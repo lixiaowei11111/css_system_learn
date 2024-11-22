@@ -1,0 +1,13 @@
+{
+  "name": "css_system_learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npx -y only-allow pnpm"
+  },
+  "packageManager": "pnpm@9.14.2",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
