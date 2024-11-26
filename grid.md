@@ -74,7 +74,7 @@
 + 什么是显式网格
  在创建示例网格时，我们使用 grid-template-columns 属性专门定义了列轨道，但网格也会自行创建行。这些行是隐式网格的一部分。而显式网格由使用 grid-template-columns 或 grid-template-rows 定义的任何行和列组成。
 + 什么是隐式网格
-  如果你在定义的网格外放置内容，或者由于内容太多需要换到新的一行或者列，需要更多的网格轨道，那么网格就会在隐式网格中创建行和列。默认情况下，这些轨道会自动调整大小，因此它们的大小取决于轨道内的内容。
+  **如果定义了`grid-template-columns/grid-template-rows`的数量,但是由于grid子元素太多导致了换行或者列**，需要更多的网格轨道，那么网格就会在隐式网格中创建行和列。默认情况下，这些轨道会自动调整大小，因此它们的大小取决于轨道内的内容。
 + 设置隐式网格的宽度和高度
   可以使用 grid-auto-rows 和 grid-auto-columns 属性为在隐式网格中创建的轨道定义设定大小。
 
@@ -303,3 +303,58 @@ main-start
 main-end
 ft-start
 ft-end
+
+## 9. 自动定位
+`grid-auto-columns`
+`grid-auto-rows`
+
+`grid-auto-flow`: `row(默认值) | column | dense`
++ [`grid-auto-flow`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-flow)能够自动定位
+
+```CSS
+.wrapper {
+  display: grid;
+  grid-template-rows: repeat(3, 200px);
+  gap: 10px;
+  grid-auto-flow: column;
+  grid-auto-columns: 300px 100px;
+}
+
+```
+```html
+<div class="wrapper">
+  <div>One</div>
+  <div>Two</div>
+  <div>Three</div>
+  <div>Four</div>
+  <div>Five</div>
+  <div>Six</div>
+  <div>Seven</div>
+  <div>Eight</div>
+</div>
+```
+## 10. 网格布局中的盒模型对齐
+
+### 1. 块轴和行轴
+
+grid布局中也可以类比于flex上分为两个轴: block 和 line
+
+![block axios](./assets/block-axios.png)
+![line axios](./assets//line-axios.png)
+
+### 2. 控制元素的对齐方式
+
++ `align-self`和`align-items`用于控制**元素**在block axios的对齐方式
+
++ `justify-self`和`justify-items`和用于控制**元素**在line axios的对齐方式
+
+> 和flex相同, `align-self/justify-self` 是**元素上的属性**,而不是grid容器的属性
+
+### 3. 控制网格轨道的对齐方式
+
++ `align-content`用于控制 网格轨道在block axios的对齐方式
+
++ `justify-content`用于控制 网格轨道在block axios的对齐方式
+
++ `place-content`:<align-content> <justify-content>
+  + `place-content`是上述两个容器属性的缩写,如果只有一个值,那默认第二个值(即justify-content的值)和这个唯一值相等
